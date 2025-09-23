@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "eI6WyeVLz80=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Andre\\Documents\\Lokale Git Repositories\\haavandreas\\catalogservice\\CatalogService.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Andre\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.5\\microsoft.aspnetcore.openapi.9.0.5.nupkg.sha512",
+    "C:\\Users\\Andre\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512",
+    "C:\\Users\\Andre\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\9.0.4\\swashbuckle.aspnetcore.swaggerui.9.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}
