@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CatalogService.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/products")]
 public class CatalogController : ControllerBase
 {
 
@@ -45,9 +45,79 @@ public class CatalogController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet("{productId}", Name = "GetProductById")]
-    public Product Get(Guid productId)
+    [HttpGet]
+    public ActionResult<IEnumerable<Product>> GetAll()
     {
-        return _products.Where(c => c.id == productId).First();
+        return Ok(_products);
+    }
+
+    [HttpGet("{id}", Name = "GetProductById")]
+    public ActionResult<Product> Get(Guid id)
+    {
+        var product = _products.FirstOrDefault(c => c.id == id);
+        if (product == null)
+        {
+            return NotFound();
+        }
+        return Ok(product);
+    }
+
+    [HttpPost]
+    public ActionResult<Product> Create(Product product)
+    {
+        if (product.id == Guid.Empty)
+        {
+            product.id = Guid.NewGuid();
+        }
+        
+        // Ensure offers have IDs if not provided
+        if (product.offers != null)
+        {
+            foreach (var offer in product.offers.Where(o => o.id == Guid.Empty))
+            {
+                offer.id = Guid.NewGuid();
+            }
+        }
+
+        _products.Add(product);
+        return CreatedAtRoute("GetProductById", new { id = product.id }, product);
+    }
+
+    [HttpPut("{id}")]
+    public ActionResult<Product> Update(Guid id, Product product)
+    {
+        var existingProduct = _products.FirstOrDefault(c => c.id == id);
+        if (existingProduct == null)
+        {
+            return NotFound();
+        }
+
+        // Update the existing product
+        existingProduct.name = product.name;
+        existingProduct.description = product.description;
+        existingProduct.sku = product.sku;
+        existingProduct.brand = product.brand;
+        existingProduct.manufacturer = product.manufacturer;
+        existingProduct.model = product.model;
+        existingProduct.image = product.image;
+        existingProduct.url = product.url;
+        existingProduct.releaseDate = product.releaseDate;
+        existingProduct.expires = product.expires;
+        existingProduct.offers = product.offers;
+
+        return Ok(existingProduct);
+    }
+
+    [HttpDelete("{id}")]
+    public ActionResult Delete(Guid id)
+    {
+        var product = _products.FirstOrDefault(c => c.id == id);
+        if (product == null)
+        {
+            return NotFound();
+        }
+
+        _products.Remove(product);
+        return NoContent();
     }
 }
