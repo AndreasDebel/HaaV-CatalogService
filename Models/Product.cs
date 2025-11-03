@@ -3,15 +3,15 @@
     public class Product
     {
         public Guid Id { get; set; }
-        public string? Name { get; set; }
-        public string? Description { get; set; }
-        public decimal Price { get; set; }
-        public string? Brand { get; set; }
-        public string? Manufacturer { get; set; }
-        public string? Model { get; set; }
-        public string? ImageUrl { get; set; }
-        public string? ProductUrl { get; set; }
-        public DateTime ReleaseDate { get; set; }
-        public DateTime? ExpiryDate { get; set; }
+        public string? name { get; set; }
+        public string? description { get; set; }
+        public decimal price { get; set; }
+        public string? brand { get; set; }
+        public string? manufacturer { get; set; }
+        public string? model { get; set; }
+        public string? image { get; set; }
+        public string? url { get; set; }
+        public DateTime releaseDate { get; set; }
+        public DateTime? expires { get; set; }
     }
 }
