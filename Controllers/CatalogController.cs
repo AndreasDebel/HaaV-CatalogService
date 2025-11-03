@@ -10,17 +10,31 @@ public class CatalogController : ControllerBase
 
     private static List<Product> _products = new List<Product>() {
      new () {
-         Id = new Guid("7125e019-c469-4dbd-93e5-426de6652523"),
-         Name = "Salmon Fillet",
-         Description = "Fresh salmon fillet",
-         Price = 12.99m,
-         Brand = "FishmongerX",
-         Manufacturer = "Fish Supplier",
-         Model = "Standard",
-         ImageUrl = "https://example.com/salmon.jpg",
-         ProductUrl = "https://example.com/salmon",
-         ReleaseDate = DateTime.Now,
-         ExpiryDate = DateTime.Now.AddDays(3), // Example expiry date 3 days from now
+         id = new Guid("7125e019-c469-4dbd-93e5-426de6652523"),
+         name = "Salmon Fillet",
+         description = "Fresh salmon fillet",
+         sku = "SALMON-001",
+         brand = "FishmongerX",
+         manufacturer = "Fish Supplier",
+         model = "Standard",
+         image = "https://example.com/salmon.jpg",
+         url = "https://example.com/salmon",
+         releaseDate = DateTime.Now,
+         expires = DateTime.Now.AddDays(3), // Example expiry date 3 days from now
+         offers = new List<Offer>
+         {
+             new Offer
+             {
+                 id = Guid.NewGuid(),
+                 price = 12.99m,
+                 priceCurrency = "USD",
+                 availability = "InStock",
+                 validFrom = DateTime.Now,
+                 validThrough = DateTime.Now.AddDays(30),
+                 seller = "FishmongerX",
+                 condition = "New"
+             }
+         }
         }
     };
 
@@ -34,6 +48,6 @@ public class CatalogController : ControllerBase
     [HttpGet("{productId}", Name = "GetProductById")]
     public Product Get(Guid productId)
     {
-        return _products.Where(c => c.Id == productId).First();
+        return _products.Where(c => c.id == productId).First();
     }
 }
