@@ -1,3 +1,4 @@
+using CatalogService.Interfaces;
 using CatalogService.Repositories;
 using MongoDB.Driver;
 
