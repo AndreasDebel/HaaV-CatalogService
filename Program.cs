@@ -8,8 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 // MongoDB configuration
-var connectionString = Environment.GetEnvironmentVariable("MONGODB_CONNECTION_STRING") ?? "mongodb://localhost:27017";
-var databaseName = Environment.GetEnvironmentVariable("MONGODB_DATABASE_NAME") ?? "ProductDB";
+var connectionString = builder.Configuration.GetConnectionString("MongoDB") ?? "mongodb://localhost:27017";
+var databaseName = builder.Configuration["MongoDB:DatabaseName"] ?? "ProductDB";
 
 builder.Services.AddSingleton<IMongoClient>(sp => new MongoClient(connectionString));
 builder.Services.AddSingleton<IMongoDatabase>(sp => 
