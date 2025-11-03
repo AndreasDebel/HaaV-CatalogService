@@ -1,0 +1,16 @@
+using CatalogService.Models;
+
+namespace CatalogService.Repositories
+{
+    public interface IProductRepository
+    {
+        Task<IEnumerable<Product>> GetAllAsync();
+        Task<Product?> GetByIdAsync(Guid id);
+        Task<Product?> GetBySkuAsync(string sku);
+        Task<Product> CreateAsync(Product product);
+        Task<Product?> UpdateAsync(Guid id, Product product);
+        Task<bool> DeleteAsync(Guid id);
+        Task<bool> ExistsAsync(Guid id);
+        Task<bool> SkuExistsAsync(string sku, Guid? excludeId = null);
+    }
+}
