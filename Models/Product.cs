@@ -1,7 +1,12 @@
-﻿namespace CatalogService.Models
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace CatalogService.Models
 {
     public class Product
     {
+        [BsonId]
+        [BsonRepresentation(BsonType.String)]
         public Guid id { get; set; }
         public string? name { get; set; }
         public string? description { get; set; }
