@@ -1,0 +1,5 @@
+/drop
+/add       CatalogService.csproj
+/add       Controllers\CatalogController.cs
+/add       Models\Product.cs
+/add       Program.cs

@@ -1,0 +1,82 @@
+
+# 2025-10-20 09:12:44.652810
++y
+
+# 2025-10-20 09:12:52.276547
++/ask
+
+# 2025-10-20 09:14:03.036540
++when my CatalogClient tries to access the endpoint (which I know works from the internet browser!) I get this error. I have had some issues with tracking bin/obj files before, because I forgot to create a .gitignore. What could be the problem? info: System.Net.Http.HttpClient.RemoteCatalogService.ClientHandler[100]
++      Sending HTTP request GET http://localhost:5069/Catalog/7125e019-c469-4dbd-93e5-426de6652523
++catalog:1 Access to fetch at 'https://localhost:7270/Catalog/7125e019-c469-4dbd-93e5-426de6652523' (redirected from 'http://localhost:5069/Catalog/7125e019-c469-4dbd-93e5-426de6652523') from origin 'https://localhost:7171' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.Understand this error
++:7270/Catalog/7125e019-c469-4dbd-93e5-426de6652523:1  Failed to load resource: net::ERR_FAILED
+
+# 2025-10-20 09:14:05.819692
++y
+
+# 2025-11-03 16:23:56.573396
++/add Program.cs CatalogService.csproj Controllers\CatalogController.cs Models\Product.cs
+
+# 2025-11-03 16:24:03.029182
++/save aider_adds
+
+# 2025-11-03 16:24:37.060942
++/ask do you have any recommendations to product.cs in reference to schema.org?
+
+# 2025-11-03 16:26:40.388871
++follow camelCase and add SKU and offers.
+
+# 2025-11-03 16:26:56.788556
++y
+
+# 2025-11-03 16:27:20.117483
++/ask do you use SKU along with id?
+
+# 2025-11-03 16:28:36.156644
++add these endpoints to the controller: Create:  POST /api/products 
++Read:  GET /api/products/{id} 
++Read all:  GET /api/products 
++Update:  PUT /api/products/{id} 
++Delete:  DELETE /api/products/{id} 
+
+# 2025-11-03 16:28:53.052600
++d
+
+# 2025-11-03 16:29:04.284634
++/ask short answer: Do they follow REST principles now?
+
+# 2025-11-03 16:30:19.613607
++/ask briefly: does the controller have sufficient error handling?
+
+# 2025-11-03 16:31:12.823193
++create an interface "IProductRepository"
+
+# 2025-11-03 16:31:19.300216
++y
+
+# 2025-11-03 16:31:48.141524
++make the interface reflect the contents of the controller
+
+# 2025-11-03 16:33:31.508684
++create a productrepository to connect with a mongodb
+
+# 2025-11-03 16:35:08.420586
++y
+
+# 2025-11-03 16:35:17.876701
++n
+
+# 2025-11-03 16:35:29.140479
++y
+
+# 2025-11-03 16:35:29.146515
++/run dotnet restore
+
+# 2025-11-03 16:35:29.147508
++/run dotnet restore
+
+# 2025-11-03 16:35:31.492850
++d
+
+# 2025-11-03 16:36:26.205150
++/undo
