@@ -1,0 +1,38 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: secret123
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-data:/data/db
+
+  catalogservice:
+    image: andreasdebel/catalogservice-image:1.0.0
+    container_name: catalogservice
+    restart: always
+    environment:
+      - MONGODB_CONNECTION_STRING=mongodb://admin:secret123@mongodb:27017
+      - MONGODB_DATABASE_NAME=ProductDB
+    ports:
+      - 5000:8080
+    depends_on:
+      - mongodb
+
+  # catalogclient:
+  #   image: andreasdebel/catalogclient-image:1.0.0
+  #   container_name: catalogclient
+  #   restart: always
+  #   ports: 
+  #     - 5001:80
+  #   depends_on:
+  #     - catalogservice
+
+
+volumes:
+  mongo-data:
+    driver: local
