@@ -1,5 +1,5 @@
+using CatalogService.Interfaces;
 using CatalogService.Models;
-using CatalogService.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CatalogService.Controllers;

@@ -1,3 +1,4 @@
+using CatalogService.Interfaces;
 using CatalogService.Models;
 using MongoDB.Driver;
 
@@ -9,14 +10,13 @@ namespace CatalogService.Repositories
 
         public ProductRepository(IMongoDatabase database)
         {
-            _products = database.GetCollection<Product>("products");
+            _products = database.GetCollection<Product>("Products");
         }
 
         public IEnumerable<Product> GetAll()
         {
             return _products.Find(_ => true).ToList();
         }
-
         public Product? GetById(Guid id)
         {
             return _products.Find(p => p.id == id).FirstOrDefault();

@@ -34,6 +34,18 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseCors(policy => policy
+   .SetIsOriginAllowed(origin =>
+   {
+       if (string.IsNullOrEmpty(origin)) return false;
+       try { return new Uri(origin).Host == "localhost"; }
+       catch { return false; }
+   })
+   .AllowAnyHeader()
+   .AllowAnyMethod()
+   .AllowCredentials()
+);
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

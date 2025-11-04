@@ -80,3 +80,101 @@
 
 # 2025-11-03 16:36:26.205150
 +/undo
+
+# 2025-11-03 16:48:21.484960
++create a productrepository to connect with a mongodb
+
+# 2025-11-03 16:48:52.292240
++y
+
+# 2025-11-03 16:49:01.770187
++/run dotnet restore
+
+# 2025-11-03 16:49:01.770187
++/run dotnet restore
+
+# 2025-11-03 16:52:45.436335
++get the connection string from env MONGODB_CONNECTION_STRING and use the DB "ProductDB"
+
+# 2025-11-03 16:53:02.244107
++n
+
+# 2025-11-03 16:54:55.172163
++check first for this env MONGODB_DATABASE_NAME
+
+# 2025-11-03 16:55:05.475630
++n
+
+# 2025-11-03 17:01:30.747856
++/ask what does this mean in respect to the MongoDB env Sørg for, at connectionStrings og andre følsomme oplysninger ikke hardcodes i koden.
++Læs i stedet parametrene fra miljøvariabler via  .NET Configuration .
+
+# 2025-11-03 17:02:34.196113
++please refactor
+
+# 2025-11-03 17:03:07.604336
++n
+
+# 2025-11-03 17:06:12.771058
++/ask write a body for a post request
+
+# 2025-11-03 17:06:55.948037
++/ask write another which has no offer and is a tablet
+
+# 2025-11-03 17:09:28.428097
++write a product add for mongosh
+
+# 2025-11-03 17:13:24.987824
++mongosh command to show all items in a collection
+
+# 2025-11-03 17:16:37.716159
++/ask
+
+# 2025-11-03 17:17:44.340744
++I need some help troubleshooting. I can see that my post request are saved between sessions. But when I use mongosh like this, and i write db.Products.find(), i don't see any entries. winpty docker exec -it mongodb mongosh -u admin -p secret123 --authenticationDatabase admin
+
+# 2025-11-03 17:22:50.387713
++fail: Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware[1]
++      An unhandled exception has occurred while executing the request.
++      System.TimeoutException: A timeout occurred after 30000ms selecting a server using CompositeServerSelector{ Selectors = ReadPreferenceServerSelector{ ReadPreference = { Mode : Primary } }, LatencyLimitingServerSelector{ AllowedLatencyRange = 00:00:00.0150000 }, OperationsCountServerSelector }. Client view of cluster state is { ClusterId : "1", Type : "Unknown", State : "Disconnected", Servers : [{ ServerId: "{ ClusterId : 1, EndPoint : "Unspecified/mongodb:27017" }", EndPoint: "Unspecified/mongodb:27017", ReasonChanged: "Heartbeat", State: "Disconnected", ServerVersion: , TopologyVersion: , Type: "Unknown", HeartbeatException: "MongoDB.Driver.MongoConnectionException: An exception occurred while opening a connection to the server.
++       ---> System.Net.Sockets.SocketException (0x00002AF9): No such host is known.
++         at System.Net.Dns.GetHostEntryOrAddressesCore(String hostName, Boolean justAddresses, AddressFamily addressFamily, Nullable`1 activityOrDefault)
++         at System.Net.Dns.GetHostAddresses(String hostNameOrAddress, AddressFamily family)
++         at MongoDB.Driver.Core.Connections.TcpStreamFactory.ResolveEndPoints(EndPoint initial)
++         at MongoDB.Driver.Core.Connections.TcpStreamFactory.CreateStream(EndPoint endPoint, CancellationToken cancellationToken)
++         at MongoDB.Driver.Core.Connections.BinaryConnection.OpenHelper(CancellationToken cancellationToken)
++         --- End of inner exception stack trace ---
++         at MongoDB.Driver.Core.Connections.BinaryConnection.OpenHelper(CancellationToken cancellationToken)
++         at MongoDB.Driver.Core.Connections.BinaryConnection.Open(CancellationToken cancellationToken)
++         at MongoDB.Driver.Core.Servers.ServerMonitor.InitializeConnection(CancellationToken cancellationToken)
++         at MongoDB.Driver.Core.Servers.ServerMonitor.Heartbeat(CancellationToken cancellationToken)", LastHeartbeatTimestamp: "2025-11-03T16:20:34.4604880Z", LastUpdateTimestamp: "2025-11-03T16:20:34.4604885Z" }] }.
++         at MongoDB.Driver.Core.Clusters.Cluster.ThrowTimeoutException(IServerSelector selector, ClusterDescription description)
++ I get this error now when I try to run a get. I have not set any env variables. Is something wrong in program.cs?
+
+# 2025-11-03 17:29:48.668431
++I think I have some issues with the fact that I am using .net `Configuration` for my env variables. Describe to me how it ought to work with my mongodb connection
+
+# 2025-11-03 17:30:32.539413
++/add docker-compose.yaml
+
+# 2025-11-03 17:30:47.771951
++Do my settings in program.cs work with the docker-compose.yaml?
+
+# 2025-11-03 17:31:26.067645
++/code
+
+# 2025-11-03 17:31:36.635979
++do option 1 for me
+
+# 2025-11-03 17:33:46.101339
++describe to me the differences between .net configuration and a solution like this: var connectionString = Environment.GetEnvironmentVariable("MONGODB_CONNECTION_STRING") 
++    ?? throw new InvalidOperationException("MONGODB_CONNECTION_STRING environment variable is required");
+
+# 2025-11-03 17:34:56.523728
++n
+
+# 2025-11-03 17:34:57.914885
++d
+
+# 2025-11-03 17:55:06.235192
++/quit

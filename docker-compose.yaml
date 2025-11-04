@@ -12,7 +12,7 @@ services:
       - mongo-data:/data/db
 
   catalogservice:
-    image: andreasdebel/catalogservice-image:1.0.0
+    image: andreasdebel/catalogservice-image:2.0.0
     container_name: catalogservice
     restart: always
     environment:
@@ -23,14 +23,14 @@ services:
     depends_on:
       - mongodb
 
-  # catalogclient:
-  #   image: andreasdebel/catalogclient-image:1.0.0
-  #   container_name: catalogclient
-  #   restart: always
-  #   ports: 
-  #     - 5001:80
-  #   depends_on:
-  #     - catalogservice
+  catalogclient:
+    image: andreasdebel/catalogclient-image:1.0.0
+    container_name: catalogclient
+    restart: always
+    ports: 
+      - 5001:80
+    depends_on:
+      - catalogservice
 
 
 volumes:

@@ -1,6 +1,6 @@
 using CatalogService.Models;
 
-namespace CatalogService.Repositories
+namespace CatalogService.Interfaces
 {
     public interface IProductRepository
     {
