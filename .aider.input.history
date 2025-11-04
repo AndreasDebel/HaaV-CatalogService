@@ -265,3 +265,225 @@
 
 # 2025-11-04 14:20:32.564499
 +/drop NLog.config
+
+# 2025-11-04 14:22:17.292512
++/quit
+
+# 2025-11-04 14:22:25.892898
++y
+
+# 2025-11-04 14:22:33.700535
++/load aider_adds
+
+# 2025-11-04 14:23:25.260452
++add an empty NLog.config file
+
+# 2025-11-04 14:23:30.667331
++y
+
+# 2025-11-04 14:23:58.188465
++insert this and tell me about any modifications <?xml version="1.0" encoding="utf-8" ?>
++<nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
++      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
++
++    <extensions>
++      <add assembly="NLog.Web.AspNetCore"/>
++      <add assembly="NLog.Extensions.Logging"/>
++    </extensions>
++
++    <targets>
++      <target name="logfile" xsi:type="File" fileName="userservice-log.json" >
++         <layout xsi:type="JsonLayout" includeEventProperties="true" 
++                 excludeProperties="Comma-separated list (string)">
++           <attribute name="time" layout="${longdate}" />
++           <attribute name="level" layout="${level:upperCase=true}"/>
++           <attribute name="message" layout="${message}"/>
++         </layout>
++     </target>
++     <target name="logconsole" xsi:type="Console"> 
++         <layout>
++      ${longdate}|${level:uppercase=true}|${logger}|${message} ${exception}
++         </layout>
++     </target> 
++    <rules>
++      <logger name="*" minlevel="Debug" writeTo="logfile" />
++      <logger name="*" minlevel="Info" writeTo="logconsole" />
++    </rules>
++</nlog>
+
+# 2025-11-04 14:24:01.443552
++y
+
+# 2025-11-04 14:25:01.684309
++insert this and tell me about any modifications <?xml version="1.0" encoding="utf-8" ?>
++<nlog xmlns="http://www.nlog-project.org/schemas/NLog.xsd"
++      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
++
++    <extensions>
++      <add assembly="NLog.Web.AspNetCore"/>
++      <add assembly="NLog.Extensions.Logging"/>
++    </extensions>
++
++    <targets>
++      <target name="logfile" xsi:type="File" fileName="userservice-log.json" >
++         <layout xsi:type="JsonLayout" includeEventProperties="true" 
++                 excludeProperties="Comma-separated list (string)">
++           <attribute name="time" layout="${longdate}" />
++           <attribute name="level" layout="${level:upperCase=true}"/>
++           <attribute name="message" layout="${message}"/>
++         </layout>
++     </target>
++     <target name="logconsole" xsi:type="Console"> 
++         <layout>
++      ${longdate}|${level:uppercase=true}|${logger}|${message} ${exception}
++         </layout>
++     </target> 
++    <rules>
++      <logger name="*" minlevel="Debug" writeTo="logfile" />
++      <logger name="*" minlevel="Info" writeTo="logconsole" />
++    </rules>
++</nlog>
+
+# 2025-11-04 14:25:02.843931
++d
+
+# 2025-11-04 14:26:23.844490
++/ask
+
+# 2025-11-04 14:26:35.868336
++do you see any isses with the NLog.config file?
+
+# 2025-11-04 14:26:52.549253
++/drop Models\Product.cs Controllers\CatalogController.cs
+
+# 2025-11-04 14:26:54.827743
++do you see any isses with the NLog.config file?
+
+# 2025-11-04 14:28:39.909202
++/drop NLog.config
+
+# 2025-11-04 14:28:51.691419
++when was George Washington born?
+
+# 2025-11-04 14:37:14.612311
++/quit
+
+# 2025-11-04 14:37:28.964428
++/ask what is a cafe latte?
+
+# 2025-11-04 14:50:40.123926
++/ask
+
+# 2025-11-04 14:50:45.692114
++/load aider_adds
+
+# 2025-11-04 14:50:54.546833
++/drop Controllers\CatalogController.cs Models\Product.cs
+
+# 2025-11-04 14:51:01.548209
++/add NLog.config
+
+# 2025-11-04 14:51:24.355788
++When I add these lines in program.cs my dotnet run doesnt work. builder.Logging.ClearProviders();
++ builder.Host.UseNLog();
+
+# 2025-11-04 14:52:41.428091
++Have a look at program.cs now. Does it look right?
+
+# 2025-11-04 14:57:38.467774
++after trying the 3rd option it stalls at this stage $ dotnet run
++Using launch settings from C:\Users\Andre\Documents\Lokale Git Repositories\haavandreas\catalogservice\Properties\launchSettings.json...
++Building...
++C:\Users\Andre\Documents\Lokale Git Repositories\haavandreas\catalogservice\Program.cs(41,14): warning ASP0011: Suggest using builder.Logging instead of ConfigureLogging (https://aka.ms/aspnet/analyzers) [C:\Users\Andre\Documents\Lokale Git Repositories\haavandreas\catalogservice\CatalogService.csproj]
+
+# 2025-11-04 14:57:41.203855
++y
+
+# 2025-11-04 14:59:32.468340
++all the mentioned approaches makes the program stall. Can you check if the solution proposed is obsolete_
+
+# 2025-11-04 15:00:20.971763
++/code
+
+# 2025-11-04 15:00:37.731306
++feel free to implement are more modern solution (still using NLog)
+
+# 2025-11-04 15:01:01.915780
++d
+
+# 2025-11-04 15:02:48.859382
++the program still doesnt run 
+
+# 2025-11-04 15:03:44.603625
++/ask
+
+# 2025-11-04 15:03:51.716031
++/clear
+
+# 2025-11-04 15:03:55.899069
++/add Properties\launchSettings.json
+
+# 2025-11-04 15:04:23.299867
++/undo
+
+# 2025-11-04 15:06:14.052175
++my program builds succesfully. But with dotnet run it stalls after I've added these lines. builder.Logging.ClearProviders();
++builder.Host.UseNLog(); could it be related to launchsettings.json?
+
+# 2025-11-04 15:09:03.579470
++I've tried commenting out the debug rule and I've tried commenting out this part: //try
++//{
++//    var logger =
++//NLog.LogManager.Setup().LoadConfigurationFromAppSettings()
++//          .GetCurrentClassLogger();
++//    logger.Debug("start min service");
++//}
++//catch (Exception ex)
++//{
++//    Console.WriteLine($"NLog setup failed: {ex.Message}");
++//    throw;
++//} neither made the project run
+
+# 2025-11-04 15:11:05.140166
++after changing the NLog config this happened! $ dotnet run
++Using launch settings from C:\Users\Andre\Documents\Lokale Git Repositories\haavandreas\catalogservice\Properties\launchSettings.json...
++Building...
++
++                                2025-11-04 15:10:31.3513|INFO|Microsoft.Hosting.Lifetime|
++
++
++                                2025-11-04 15:10:31.3575|INFO|Microsoft.Hosting.Lifetime|
++
++
++                                2025-11-04 15:10:31.3575|INFO|Microsoft.Hosting.Lifetime|
++
++
++                                2025-11-04 15:10:31.3575|INFO|Microsoft.Hosting.Lifetime|
++
+
+# 2025-11-04 15:11:54.644132
++usually after dotnet run I can see the ports its running on. Why not any more?
+
+# 2025-11-04 15:14:27.259092
++what part of the original NLog.config do you think posed the issue?
+
+# 2025-11-04 15:30:54.933521
++/code
+
+# 2025-11-04 15:30:59.700550
++clear
+
+# 2025-11-04 15:31:04.172397
++/clear
+
+# 2025-11-04 15:31:25.740379
++Implement catch try finally in Program.cs with finally
++ {
++   NLog.LogManager.Shutdown();
++ }
+
+# 2025-11-04 15:33:52.479407
++/add Controllers\CatalogController.cs
+
+# 2025-11-04 15:34:51.916622
++Add appropriate logging to the controller. (<add assembly="NLog.Extensions.Logging"/> should already log httpcalls)
