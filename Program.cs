@@ -38,11 +38,7 @@ builder.Services.AddOpenApi();
 
 // Use NLog from here on
 builder.Logging.ClearProviders();
-builder.Host.ConfigureLogging(logging =>
-{
-    logging.ClearProviders();
-    logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
-}).UseNLog();
+builder.Host.UseNLog();
 
 var app = builder.Build();
 
