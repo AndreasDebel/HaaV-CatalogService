@@ -15,11 +15,6 @@ public class CatalogController : ControllerBase
     {
         _logger = logger;
         _productRepository = productRepository;
-
-        var hostName = System.Net.Dns.GetHostName();
-        var ips = System.Net.Dns.GetHostAddresses(hostName);
-        var _ipaddr = ips.First().MapToIPv4().ToString();
-        _logger.LogInformation(1, $"XYZ Service responding from {_ipaddr}");
     }
 
     [HttpGet]
