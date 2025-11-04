@@ -178,3 +178,18 @@
 
 # 2025-11-03 17:55:06.235192
 +/quit
+
+# 2025-11-04 13:43:41.084810
++y
+
+# 2025-11-04 13:44:28.805112
++add try catch finally to program.cs. Finally should look like this finally
++ {
++   NLog.LogManager.Shutdown();
++ }
+
+# 2025-11-04 13:44:38.421110
++y
+
+# 2025-11-04 13:47:19.901213
++/load aider_adds
