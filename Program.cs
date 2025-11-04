@@ -1,6 +1,21 @@
 using CatalogService.Interfaces;
 using CatalogService.Repositories;
 using MongoDB.Driver;
+using NLog;
+using NLog.Web;
+
+try
+{
+    var logger =
+NLog.LogManager.Setup().LoadConfigurationFromAppSettings()
+          .GetCurrentClassLogger();
+    logger.Debug("start min service");
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"NLog setup failed: {ex.Message}");
+    throw;
+}
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +35,14 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+// Use NLog from here on
+builder.Logging.ClearProviders();
+builder.Host.ConfigureLogging(logging =>
+{
+    logging.ClearProviders();
+    logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+}).UseNLog();
 
 var app = builder.Build();
 
