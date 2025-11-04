@@ -20,16 +20,15 @@ public class CatalogController : ControllerBase
     [HttpGet]
     public ActionResult<IEnumerable<Product>> GetAll()
     {
-        _logger.LogInformation("Getting all products");
         try
         {
             var products = _productRepository.GetAll();
-            _logger.LogInformation("Retrieved {ProductCount} products", products.Count());
+            _logger.LogDebug("Retrieved {ProductCount} products", products.Count());
             return Ok(products);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error occurred while retrieving all products");
+            _logger.LogError(ex, "Failed to retrieve products");
             throw;
         }
     }
