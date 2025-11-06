@@ -10,6 +10,8 @@ services:
       - 27017:27017
     volumes:
       - mongo-data:/data/db
+    networks:
+      - haav-ops
 
   catalogservice:
     image: andreasdebel/catalog-service:1.0.2
@@ -22,6 +24,8 @@ services:
       - 5000:8080
     depends_on:
       - mongodb
+    networks:
+      - haav-ops
 
   catalogclient:
     image: andreasdebel/catalogclient-image:1.0.0
@@ -31,8 +35,15 @@ services:
       - 5001:80
     depends_on:
       - catalogservice
+    networks:
+      - haav-ops
 
 
 volumes:
   mongo-data:
     driver: local
+
+networks:
+  haav-ops:
+    name: haav-ops
+    external: true

@@ -23,3 +23,5 @@ volumes:
 
 networks:
   haav-ops:
+    name: haav-ops
+    driver: bridge  
